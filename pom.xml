@@ -68,7 +68,30 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<!--<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<configuration>
+					<respositoy>rogerjvf/${project.artifactId}</respositoy>
+					<tag>${proyect.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/conversor.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
+		<finalName>conversor</finalName>
 	</build>
 
 </project>
