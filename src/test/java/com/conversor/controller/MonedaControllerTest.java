@@ -43,7 +43,7 @@ class MonedaControllerTest {
     }
     
     @Test
-    
+    @Disabled
     void testFindById() throws Exception{
         mvc.perform(get("/moneda/7")
         		.contentType(MediaType.APPLICATION_JSON))
@@ -100,8 +100,4 @@ class MonedaControllerTest {
     			.andDo(print())
     			.andExpect(status().isOk());
     }
-    
-    
-    
-
 }

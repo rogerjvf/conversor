@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,6 @@ import com.conversor.exceptions.BussniesRulesException;
 import com.conversor.model.Moneda;
 import com.conversor.service.MonedaServiceImpl;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("moneda")
@@ -61,12 +61,6 @@ public class MonedaController {
 		return new ResponseEntity<Moneda>(moneda,null,HttpStatus.CREATED);
 	}
 	
-	@PostMapping(value="save",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<Moneda> save2(@RequestBody Moneda obj) throws BussniesRulesException {
-		log.info("controller save, descripcion"+obj.getDescripcion());
-		return new ResponseEntity<Moneda>(obj,null,HttpStatus.CREATED);
-	}
-	
 	@PutMapping
 	public ResponseEntity<Boolean> update(@RequestBody  Moneda moneda) throws BussniesRulesException {
 		serv.update(moneda);
@@ -88,6 +82,7 @@ public class MonedaController {
 	
 	@GetMapping("conversion/{idOrigen}/{idDestino}/{monto}")
 	public ResponseEntity<BigDecimal> conversor(@PathVariable Integer idOrigen, @PathVariable Integer idDestino, @PathVariable BigDecimal monto ) throws BussniesRulesException {		
+		log.info("controller conversor");
 		BigDecimal montoResult=serv.conversor(idOrigen, idDestino, monto);
 		return ResponseEntity.ok(montoResult);
 	}
